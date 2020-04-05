@@ -1,0 +1,20 @@
+:eclipseClasspath
+Download https://repo1.maven.org/maven2/org/ow2/asm/asm-debug-all/5.0.3/asm-debug-all-5.0.3-sources.jar
+Download https://repo1.maven.org/maven2/net/sf/jopt-simple/jopt-simple/4.5/jopt-simple-4.5-sources.jar
+Download https://repo1.maven.org/maven2/io/netty/netty-all/4.0.10.Final/netty-all-4.0.10.Final-sources.jar
+Download https://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0-sources.jar
+Download https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2-sources.jar
+Download https://repo1.maven.org/maven2/commons-codec/commons-codec/1.9/commons-codec-1.9-sources.jar
+Download https://repo1.maven.org/maven2/com/google/code/gson/gson/2.2.4/gson-2.2.4-sources.jar
+Download https://libraries.minecraft.net/com/mojang/authlib/1.5.16/authlib-1.5.16-sources.jar
+Download https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9-sources.jar
+Download https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9-sources.jar
+Download https://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl/2.9.1/lwjgl-2.9.1-sources.jar
+Download https://repo1.maven.org/maven2/org/lwjgl/lwjgl/lwjgl_util/2.9.1/lwjgl_util-2.9.1-sources.jar
+:eclipseJdt
+:eclipseProject
+:eclipse
+
+BUILD SUCCESSFUL
+
+Total time: 4.416 secs
