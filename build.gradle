@@ -5,7 +5,8 @@ buildscript {
         }
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            //url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
             name = "sonatype"
@@ -13,15 +14,23 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        //classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
+            changing = true
+        }
     }
 }
 
 apply plugin: 'forge'
 
-version = "0.1"
+version = "1.0"
 group= "net.obmc.obmetaproducer" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "OBMetaProducer"
+
+java {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 
 minecraft {
     version = "1.7.10-10.13.4.1558-1.7.10"
@@ -50,8 +59,12 @@ processResources
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
+
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
+    
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        
         include 'mcmod.info'
                 
         // replace version and mcversion
@@ -60,6 +73,9 @@ processResources
         
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
+    
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        
         exclude 'mcmod.info'
     }
 }

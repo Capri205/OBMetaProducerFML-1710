@@ -17,7 +17,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 
-@Mod(modid = "obmetaproducer", version = "0.1", name = "OBMetaProducer", acceptableRemoteVersions = "*")
+@Mod(modid = "obmetaproducer", version = "1.0", name = "OBMetaProducer", acceptableRemoteVersions = "*")
 
 public class OBMetaProducer
 {
@@ -27,7 +27,9 @@ public class OBMetaProducer
 	public static final String OBMFILE = "MetaFile";
 	public static final String OBMOPTS = "Options";
 
+	private String servername;
     private String metafile;
+    private String trackerfile;
     private Boolean obsfucate;
     private Integer range;
     private File cfgFile;
@@ -53,12 +55,16 @@ public class OBMetaProducer
             FMLLog.log(Level.INFO, "[OBMetaProducer] Loaded configuration");
             //Property metafileProperty = cfg.get(Configuration.CATEGORY_GENERAL, "Filename", "OBMetaProducer.dat");
             //String metafile = cfg.get(Configuration.CATEGORY_GENERAL, "Filename", "XxXxXx.dat").getString();
+            servername = cfg.getString("Servername", Configuration.CATEGORY_GENERAL, "config/OBMetaProducer.dat","Name of this server");
             metafile = cfg.getString("Filename", Configuration.CATEGORY_GENERAL, "config/OBMetaProducer.dat","Player position data file");
             obsfucate = cfg.getBoolean("Obsfucate", Configuration.CATEGORY_GENERAL, false, "Option to obsfucate player location");
             range = cfg.getInt("Range", Configuration.CATEGORY_GENERAL, 1000, 1000, 1000, "Number of blocks to obsfucate");
+       		trackerfile = cfg.getString("Trackerfile", Configuration.CATEGORY_GENERAL, "config/OBMetaProducer.dat","Player tracker data file");
 
             //FMLLog.log(Level.INFO, "[OBMetaProducer] "+metafileProperty);
             //metafile = metafileProperty.getString();
+            FMLLog.log(Level.INFO, "[OBMetaProducer] Servername is "+servername);
+            FMLLog.log(Level.INFO, "[OBMetaProducer] Player tracker is "+trackerfile);
             FMLLog.log(Level.INFO, "[OBMetaProducer] Metadata output in "+metafile);
             FMLLog.log(Level.INFO, "[OBMetaProducer] Player positon masking is set to "+obsfucate);
             if (obsfucate) {
@@ -68,7 +74,8 @@ public class OBMetaProducer
         	FMLLog.log(Level.ERROR, e, "[OBMetaProducer] Failed to load configuration");
         }
 
-    	FMLCommonHandler.instance().bus().register(new OBTicker(metafile, obsfucate, range));    
+    	FMLCommonHandler.instance().bus().register(new OBTicker(metafile, obsfucate, range));
+    	FMLCommonHandler.instance().bus().register(new OBListener(trackerfile, servername));
     }
     
     @EventHandler
